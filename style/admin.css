@@ -66,11 +66,6 @@ table {
   font-size: clamp(0.8rem, 12%, 14px);
 }
 
-tr,
-td {
-  max-height: 75px;
-}
-
 table,
 th,
 td {
@@ -83,16 +78,9 @@ td {
   padding: 10px;
 }
 
-td {
-  word-wrap: break-word;
-}
-
-.tablecell-img {
-  width: 75px;
-}
 
 .tablecell-img img {
-  width: 100%;
+  width: 100px;
 }
 
 th .admin-table-head-content {
@@ -106,9 +94,13 @@ th .admin-table-head-content .admin-table-head-title {
   justify-content: center;
 }
 
-.songs-wrapper {
+ol.songs-wrapper {
   overflow-y: scroll;
   height: 100px;
+}
+
+ol.songs-wrapper {
+  padding-left: 20px;
 }
 
 .sorting-button-group {
