@@ -187,5 +187,6 @@ function ujAlbumFelvitele(album_lista) {
   obj.id = "A" + (parseInt(album_lista[album_lista.length - 1].id.substring(1)) + 1);
   obj.dalok = input_dalok.val().split("\n")
   album_lista.push(obj);
+  alert(`Új album hozzáadva! (${obj.eloado} - ${obj.album})`)
   tablazatLegeneralasa(album_lista);
 }
