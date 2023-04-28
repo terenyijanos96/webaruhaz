@@ -121,7 +121,8 @@ ol.songs-wrapper {
   }
 
   form {
-    width: 100%;
+    align-self: center;
+    width: min(100%, 650px);
   }
 
   input[type="text"],
