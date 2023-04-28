@@ -47,8 +47,8 @@ function tablazatFejlecLetrehozasa() {
                 <div class="admin-table-head-content">
                   <div class="admin-table-head-title">id</div>
                   <div class="sorting-button-group">
-                    <button orderby="id" direction="desc" >&#x2C4;</button>
-                    <button orderby="id" direction="asc">&#x2C5;</button>
+                    <button orderby="id" direction="asc" >&#x2C4;</button>
+                    <button orderby="id" direction="desc">&#x2C5;</button>
                   </div>
                 </div>
               </th>
