@@ -4,6 +4,7 @@ let lista = [];
 
 $(function () {
   let vegpont = "script/adatok.json";
+  $(".admin-form-wrapper").html(adminFormLegeneralasa());
   adatBeolvas(vegpont, listaInicializalasa);
 
   $("#admin-article form").submit(function (e) {
@@ -189,4 +190,97 @@ function ujAlbumFelvitele(album_lista) {
   album_lista.push(obj);
   alert(`Új album hozzáadva! (${obj.eloado} - ${obj.album})`)
   tablazatLegeneralasa(album_lista);
+}
+
+function adminFormLegeneralasa() {
+  return `
+    <h2>Admin</h2>
+    <form id="admin-form">
+      <h3>Album hozzáadása</h3>
+  
+      <div class="input-group">
+        <label for="input-cover">Borítókép URL hozzáadása</label>
+        <input
+          type="url"
+          name="boritokep"
+          id="input-cover"
+          aria-label="Borítókép URL hozzáadása"
+          pattern="^https?:\\/{2}[\\w\\.\\/]+\\.(jpg|jpeg|png|webp|gif)$"
+          required
+        />
+      </div>
+      <div class="input-group">
+        <label for="input-artist">Előadó</label>
+        <input
+          type="text"
+          id="input-artist"
+          name="eloado"
+          pattern="[\\wÁÉÍÓÖŐÚÜŰáéíóöőúüű]+( [\\wÁÉÍÓÖŐÚÜŰáéíóöőúüű]+)*"
+          required
+        />
+      </div>
+      <div class="input-group">
+        <label for="input-album">Album</label>
+        <input
+          type="text"
+          id="input-album"
+          name="album"
+          pattern="[\\wÁÉÍÓÖŐÚÜŰáéíóöőúüű]+( [\\wÁÉÍÓÖŐÚÜŰáéíóöőúüű]+)*"
+          required
+        />
+      </div>
+      <div class="input-group">
+        <label for="input-genre">Műfaj</label>
+        <input
+          type="text"
+          id="input-genre"
+          name="mufaj"
+          pattern="[\\wÁÉÍÓÖŐÚÜŰáéíóöőúüű\\-]+"
+          required
+        />
+      </div>
+      <div class="input-group">
+        <label for="input-relase">Megjelenés éve</label>
+        <input
+          type="number"
+          id="input-relase"
+          min="1900"
+          max="${new Date().getFullYear()}"
+          value="1900"
+          name="megjelenes"
+          required
+        />
+      </div>
+      <div class="input-group">
+        <label for="input-price">Ár (Ft)</label>
+        <input
+          type="number"
+          id="input-price"
+          min="1"
+          value="1"
+          name="ar"
+          required
+        />
+      </div>
+      <div class="input-group">
+        <label for="input-stock">Készlet (db)</label>
+        <input
+          type="number"
+          id="input-stock"
+          min="0"
+          value="0"
+          name="keszlet"
+          required
+        />
+      </div>
+      <label for="textarea-songs"
+        >Dalok (külön dalok külön sorba kerüljenek!)</label
+      >
+      <textarea rows="12" id="textarea-songs" placeholder=""></textarea>
+      <input
+        type="submit"
+        value="Felvitel"
+        aria-label="Új album felvitele"
+      />
+    </form>`;
 }
