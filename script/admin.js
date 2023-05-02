@@ -194,8 +194,20 @@ function ujAlbumFelvitele(album_lista) {
 
 function adminFormLegeneralasa() {
   return `
-    <h2>Admin</h2>
     <form id="admin-form">
+      <div class="form-radio-group">
+      <input
+        type="radio"
+        name="form-radio"
+        id="radio-add-album"
+        checked
+      />
+      <label for="radio-add-album">Album hozzáadása</label>
+      <input type="radio" name="form-radio" id="radio-delete-album" />
+      <label for="radio-delete-album">Album törlése</label>
+      <input type="radio" name="form-radio" id="radio-modify-album" />
+      <label for="radio-modify-album">Album módosítása</label>
+      </div>
       <h3>Album hozzáadása</h3>
   
       <div class="input-group">

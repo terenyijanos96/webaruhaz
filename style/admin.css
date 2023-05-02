@@ -20,6 +20,63 @@ form {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.form-radio-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.form-radio-group input {
+  display: none;
+}
+
+.form-radio-group label {
+  background-color: #bbb;
+  padding: 5px 8px;
+  border: 1px solid black;
+  font-size: 0.8rem;
+  border-radius: 2px;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  position: relative;
+  box-shadow: 1px 1px 1px #339;
+}
+
+.form-radio-group label:hover {
+  background-color: #b5c7d3;
+}
+
+.form-radio-group label::before {
+  text-shadow: 0px 0px 2px black;
+}
+
+.form-radio-group input:checked + label {
+  background-color: #91bcda;
+  color: #000;
+  top: 1px;
+  left: 1px;
+  box-shadow: 0px 0px 1px #339;
+}
+
+#radio-add-album + label::before {
+  content: "\002B";
+  color: limegreen;
+  font-size: x-large;
+}
+
+#radio-delete-album + label::before {
+  content: "\0078";
+  color: darkred;
+  font-size: x-large;
+}
+#radio-modify-album + label::before {
+  content: "📝";
+  font-size: large;
+}
+
 form h3 {
   font-size: 1.5rem;
   border-bottom: 2px solid black;
