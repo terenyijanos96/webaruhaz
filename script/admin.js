@@ -124,9 +124,8 @@ function tablazatFejlecLetrehozasa() {
 function adminTablazatLetrehozasaObjektumbol(obj) {
   let dal_lista_html = "";
 
-  obj.dalok.forEach(dal => {
-    dal_lista_html += `<li>${dal}</li>`
-    
+  obj.dalok.forEach((dal) => {
+    dal_lista_html += `<li>${dal}</li>`;
   });
   return `
       <tr>
@@ -171,7 +170,7 @@ function rendezes(lista, mezo, irany) {
 
 function ujAlbumFelvitele(album_lista) {
   let inputok = $("#admin-article form input:not(input[type='submit'])");
-  let input_dalok = $("#admin-article form textarea")
+  let input_dalok = $("#admin-article form textarea");
   let obj = {};
   for (let i = 0; i < inputok.length; i++) {
     for (const key in album_lista[0]) {
@@ -185,10 +184,11 @@ function ujAlbumFelvitele(album_lista) {
     }
   }
 
-  obj.id = "A" + (parseInt(album_lista[album_lista.length - 1].id.substring(1)) + 1);
-  obj.dalok = input_dalok.val().split("\n")
+  obj.id =
+    "A" + (parseInt(album_lista[album_lista.length - 1].id.substring(1)) + 1);
+  obj.dalok = input_dalok.val().split("\n");
   album_lista.push(obj);
-  alert(`Új album hozzáadva! (${obj.eloado} - ${obj.album})`)
+  alert(`Új album hozzáadva! (${obj.eloado} - ${obj.album})`);
   tablazatLegeneralasa(album_lista);
 }
 
