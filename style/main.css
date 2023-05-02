@@ -24,6 +24,7 @@ nav#main-nav {
   position: sticky;
   background-color: #222;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   border-bottom: 3px solid black;
   height: 50px;
@@ -35,7 +36,7 @@ nav#main-nav {
 nav#main-nav a {
   color: white;
   text-decoration: none;
-  flex: 1
+  width: min-content;
 }
 
 nav#main-nav a::before {
@@ -94,6 +95,10 @@ header h1 {
   transition: transform 0.3s;
 }
 
+.hamburger-menu.rotate {
+  background-color: transparent;
+}
+
 .hamburger-menu::after,
 .hamburger-menu,
 .hamburger-menu::before {
@@ -108,10 +113,25 @@ header h1 {
 .hamburger-menu::before {
   content: "";
   width: 100%;
+  transform-origin: 2px 1px;
+  top: -200%;
+  transition: transform 0.3s;
 }
 
 .hamburger-menu::before {
-  top: -200%;
+  transform: rotate(0deg);
+}
+
+.hamburger-menu.rotate::before {
+  transform: rotate(40deg) scaleX(1.2);
+}
+
+.hamburger-menu::after {
+  transform: rotate(0deg);
+}
+
+.hamburger-menu.rotate::after {
+  transform: rotate(-40deg) scaleX(1.2);
 }
 
 .hamburger-menu::after {
@@ -180,7 +200,6 @@ article {
   flex-direction: column;
   gap: 15px
 }
-
 
 footer {
   background-color: #222;
