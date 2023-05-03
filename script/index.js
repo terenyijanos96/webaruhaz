@@ -19,14 +19,14 @@ function kartyakLegeneralasa(album_lista) {
     kartyak.append(kartyaLetrehozasaObjektumbol(album_lista[i]));
   }
   $(".cards button").click(function (e) {
-    let overlay = $(".overlay");
-    $("body").toggleClass("overlayed");
-    overlay.toggleClass("showed");
-    overlay.html(modalboxLetrehozasa(album_lista, e));
+    let modalDialog = $("dialog");
+    $("body").css("overflow", "hidden");
+    modalDialog[0].showModal();
+    modalDialog.html(modalboxLetrehozasa(album_lista, e));
 
     $(".modalbox-header button").click(function () {
-      $("body").removeClass("overlayed");
-      $(".overlay").removeClass("showed");
+      $("body").css("overflow", "auto");
+      modalDialog[0].close();
     });
   });
 }
@@ -89,36 +89,33 @@ function kartyaLetrehozasaObjektumbol(obj) {
           `;
 }
 
-function findParentElements(target, goalElementClassName) {
-  do {
-    target = target.parentNode;
-  } while (!target.classList.contains(goalElementClassName));
-
-  return target;
-}
-
 function modalboxLetrehozasa(album_lista, e) {
-  let target_id = findParentElements(e.target, "card").id;
-  let i = 0;
-
-  while (target_id != album_lista[i].id) {
-    i++;
-  }
+  let target_id = $(e.target).parents("div.card").eq(0).attr("id")
+  let card_index = -1
+  
+  album_lista.find((elem, index)=>{
+    if(elem.id === target_id){
+      card_index = index
+      return 0
+    }
+  })
+  
   let lista_txt = "";
-  for (let item of album_lista[i].dalok) {
+  for (let item of album_lista[card_index].dalok) {
     lista_txt += `<li>${item}</li>`;
   }
 
-  return `<div class="modalbox">
+  return `
+  <div class="modalbox">
   <div class="modalbox-header">
-    <h3>${album_lista[i].eloado} - ${album_lista[i].album}</h3>
+    <h3>${album_lista[card_index].eloado} - ${album_lista[card_index].album}</h3>
     <button aria-label="Kilépés"></button>
   </div>
   
   <div class="modalbox-body">
     <div class="modalbox-image-contrainer">
       <img
-        src="${album_lista[i].boritokep}"
+        src="${album_lista[card_index].boritokep}"
         alt=""
       />
     </div>
@@ -128,19 +125,19 @@ function modalboxLetrehozasa(album_lista, e) {
         <tbody>
           <tr>
             <th>Előadó:</th>
-            <td>${album_lista[i].eloado}</td>
+            <td>${album_lista[card_index].eloado}</td>
           </tr>
           <tr>
             <th>Album:</th>
-            <td>${album_lista[i].album}</td>
+            <td>${album_lista[card_index].album}</td>
           </tr>
           <tr>
             <th>Műfaj:</th>
-            <td>${album_lista[i].mufaj}</td>
+            <td>${album_lista[card_index].mufaj}</td>
           </tr>
           <tr>
             <th>Megjelenés:</th>
-            <td>${album_lista[i].megjelenes}</td>
+            <td>${album_lista[card_index].megjelenes}</td>
           </tr>
         </tbody>
       </table>
@@ -152,8 +149,11 @@ function modalboxLetrehozasa(album_lista, e) {
     </div>
     <div class="modalbox-footer">
     <div class="modalbox-footer-stock">
-    Készlet: ${album_lista[i].keszlet} db
+    Készlet: ${album_lista[card_index].keszlet} db
     </div>
     </div>
-  </div>`;
+    </div>
+    `
+ ;
+
 }
